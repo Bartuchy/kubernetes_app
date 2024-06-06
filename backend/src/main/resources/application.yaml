@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: backend
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://postgres:5432/postgres_db
+    username: postgres
+    password: 12345
+jpa:
+  database-platform: org.hibernate.dialect.PostgresPlusDialect
+  generate-ddl: true
+  show-sql: true
+  hibernate:
+    ddl-auto: create
