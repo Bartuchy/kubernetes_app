@@ -7,7 +7,7 @@ verify:
 - docker images
 
 
-apply image to minikube
+apply image to minikube:
 - start minikube
 - minikube image load backend:1.0
 
@@ -22,21 +22,21 @@ in project root:
 - k apply -f postgres-config.yaml
 - k apply -f backend-config.yaml
 
-verify
+verify:
 -k get pod
 
-endpoint call
+endpoint call:
 - minikube service backend --url
-use produced address as endpoint host, for example
+use produced address as endpoint host, for example:
 - wget http://127.0.0.1:52600/
 
 
 to reach db through intellij
-run
+run:
 - k get pod
 - k port-forward <postgres-pod-name> 5433:5432
 
-connection specification
-url: jdbc:postgresql://localhost:5433/postgres_db
-user: postgres
-password: 12345
+connection specification:
+- url: jdbc:postgresql://localhost:5433/postgres_db
+- user: postgres
+- password: 12345
