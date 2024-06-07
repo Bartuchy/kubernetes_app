@@ -1,11 +1,8 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: postgres-secret
-  labels:
-    app: postgres
+  name: postgres-config
 data:
-  host: "postgres"
   POSTGRES_DB: "postgres_db"
   POSTGRES_USER: "postgres"
   POSTGRES_PASSWORD: "12345"
@@ -14,15 +11,11 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: postgres-pv
-  labels:
-    type: local
-    app: postgres
 spec:
-  storageClassName: manual
   capacity:
     storage: 10Gi
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   hostPath:
     path: /data/postgresql
 ---
@@ -30,12 +23,9 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: postgres-pvc
-  labels:
-    app: postgres
 spec:
-  storageClassName: manual
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
       storage: 10Gi
@@ -56,12 +46,12 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: 'postgres:14'
+          image: postgres:14
           ports:
             - containerPort: 5432
           envFrom:
             - configMapRef:
-                name: postgres-secret
+                name: postgres-config
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
               name: postgres-storage
@@ -75,11 +65,7 @@ kind: Service
 metadata:
   name: postgres
 spec:
-  type: NodePort
   ports:
     - port: 5432
-      nodePort: 30007
-      targetPort: 5432
-      protocol: TCP
   selector:
     app: postgres

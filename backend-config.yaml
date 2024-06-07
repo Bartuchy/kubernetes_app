@@ -3,14 +3,14 @@ kind: Service
 metadata:
   name: backend
 spec:
+  type: NodePort
   selector:
     app: backend
-    type: NodePort
   ports:
-    - protocol: TCP
-      port: 8080
+    - port: 8080
       targetPort: 8080
-      nodePort: 30008
+      nodePort: 30080
+      protocol: TCP
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: temp:latest
+          image: backend:1.0
           ports:
             - containerPort: 8080
           env:
@@ -37,4 +37,4 @@ spec:
             - name: SPRING_DATASOURCE_USERNAME
               value: postgres
             - name: SPRING_DATASOURCE_PASSWORD
-              value: "12345"
+              value: '12345'
