@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="row">
+      <hr />
+      <div class="create-post-container col-md-9">
+        <form class="post-form" [formGroup]="addRecipeForm" (ngSubmit)="addRecipe()">
+          <div class="form-group">
+            <div class="create-post-heading">Add recipe</div>
+            <hr />
+            <input type="text" [formControlName]="'name'" class="form-control" style="margin-top: 5px"
+              placeholder="recipe name">
+              <span *ngIf="!addRecipeForm.get('name')!.valid && addRecipeForm.get('name')!.touched">
+                <small>To pole jest wymagane!</small>
+            </span>
+
+            <input type="text" class="form-control" [formControlName]="'category'" style="margin-top: 5px" placeholder="category">
+            <span *ngIf="!addRecipeForm.get('category')!.valid && addRecipeForm.get('category')!.touched">
+              <small>To pole jest wymagane!</small>
+            </span>
+<!--            <input type="text" [(ngModel)]="customCategory" placeholder="custom category">-->
+<!--            <select name="categories" class="form-control" id="categories">-->
+<!--              <option *ngFor="let category of categories" [value]="category">{{category}}</option>-->
+<!--              <option [value]="customCategory">{{customCategory}}</option>-->
+<!--            </select>-->
+            <textarea type="text" class="form-control" [formControlName]="'description'" style="margin-top: 5px" placeholder="description"></textarea>
+            <span *ngIf="!addRecipeForm.get('description')!.valid && addRecipeForm.get('description')!.touched">
+              <small>To pole jest wymagane!</small>
+            </span>
+
+            <textarea type="text" class="form-control" [formControlName]="'ingredients'" style="margin-top: 5px" placeholder="ingredients"></textarea>
+            <span *ngIf="!addRecipeForm.get('ingredients')!.valid && addRecipeForm.get('ingredients')!.touched">
+              <small>To pole jest wymagane!</small>
+            </span>
+
+            <textarea type="text" class="form-control" [formControlName]="'directions'" style="margin-top: 5px" placeholder="directions"></textarea>
+            <span *ngIf="!addRecipeForm.get('directions')!.valid && addRecipeForm.get('directions')!.touched">
+              <small>To pole jest wymagane!</small>
+            </span>
+
+            <span>
+              <div style="margin-top: 5px" class="float-right">
+                <button (click)="discardRecipe()" class="btnDiscard">Discard</button>
+                <button class="btnCreatePost">Post</button>
+              </div>
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

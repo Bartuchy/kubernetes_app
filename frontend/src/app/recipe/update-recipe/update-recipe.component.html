@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+      <hr />
+      <div class="create-post-container col-md-9">
+        <form class="post-form" [formGroup]="updateRecipeForm" (ngSubmit)="updateRecipe()">
+          <div class="form-group">
+            <div class="create-post-heading">Add recipe</div>
+            <hr />
+            <input type="text" [formControlName]="'name'" class="form-control" 
+            style="margin-top: 5px" placeholder="recipe name" [ngModel]="recipe.name">
+  
+            <input type="text" class="form-control" [formControlName]="'category'" 
+            style="margin-top: 5px" placeholder="category" [ngModel]="recipe.category">
+
+            <textarea type="text" class="form-control" [formControlName]="'description'" 
+            style="margin-top: 5px" placeholder="description" [ngModel]="recipe.description"></textarea>
+
+            <textarea type="text" class="form-control" [formControlName]="'ingredients'" 
+            style="margin-top: 5px" placeholder="ingredients" [ngModel]="recipe.ingredients"></textarea>
+
+            <textarea type="text" class="form-control" [formControlName]="'directions'" 
+            style="margin-top: 5px" placeholder="directions" [ngModel]="recipe.directions"></textarea>
+            <span>
+              <div style="margin-top: 5px" class="float-right">
+                <button (click)="discardRecipe()" class="btnDiscard">Discard</button>
+                <button class="btnCreatePost">Update</button>
+              </div>
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

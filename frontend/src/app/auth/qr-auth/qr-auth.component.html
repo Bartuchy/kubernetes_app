@@ -1,0 +1,13 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<div id="qr">
+    <p>
+        Scan this Barcode using Google Authenticator app on your phone
+        to use it later in login
+    </p>
+    <img [src]='qrCode' alt="QR Code"/>
+    <input [(ngModel)]="verificationCode" placeholder="Enter scanned QR-Code" (input)="checkAndNavigate()">
+</div>
+<a href="/login" class="btn btn-primary">Go to login page</a>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div>
+      Witaj <b>{{username}}</b>!
+      <br /> Do tej pory podzieliłeś się <b>{{recipeLength}}</b> przepisami!<br>
+      Możesz sprawdzić historię twoich przepisów poniżej.
+    </div>
+    <hr />
+<!--    Szczegóły konta<br>-->
+
+    <hr/>
+    <div class="col-md-9">
+      <div>
+        <h3>Twoje przepisy:</h3>
+      </div>
+      <div *ngIf="recipeLength > 0 else noItems">
+        <app-recipe-tile [recipes]="recipes" [inProfile]="true"></app-recipe-tile>
+
+      </div>
+    </div>
+    <div class="col-md-3">
+      <app-side-bar></app-side-bar>
+    </div>
+  </div>
+</div>
+<ng-template #noItems>
+  <b>Nie dodałeś jeszcze żadnych przepisów!</b>
+</ng-template>

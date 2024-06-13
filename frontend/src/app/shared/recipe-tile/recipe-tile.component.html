@@ -1,0 +1,24 @@
+<div class="row post" *ngFor="let recipe of recipes">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-11">
+      <span class="subreddit-info">
+        <span> Posted by <a class="username" routerLink='/user/{{recipe.userName}}'>{{recipe.userName}}</a></span><br>
+        <!-- <span class="subreddit-text"><a class="posturl" routerLink="">{{recipe.description}}</a></span> -->
+        <span> {{recipe.additionDate}}</span>
+      </span>
+      <hr>
+      <div class="post-title">
+        <a class="postname" href="http://localhost:4200/read-recipe/{{recipe.id}}">{{recipe.name}}</a>
+      </div>
+      <div>
+        <p class="post-text" [innerHtml]="recipe.description"></p>
+      </div>
+      <hr>
+      <div>
+        <button class="login" (click)="readRecipe(recipe.id!)">Read recipe</button>
+        <button class="login move-right" (click)="deleteRecipe(recipe.id!)" *ngIf="inProfile">Delete recipe</button>
+        <button class="login move-right" (click)="updateRecipe(recipe.id!)" *ngIf="inProfile">Edit Recipe</button>
+      </div>
+    </div>
+  </div>

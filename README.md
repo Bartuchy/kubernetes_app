@@ -27,6 +27,7 @@ verify:
 
 endpoint call:
 - minikube service backend --url
+
 use produced address as endpoint host, for example:
 - wget http://127.0.0.1:52600/
 

@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+      <hr />
+      <div class="col-md-9">
+        <div class="row post">
+          <div class="col-md-1">
+          </div>
+          <div class="col-md-11">
+            <span>
+              <span> . Posted
+                <span> {{recipe.additionDate}} </span>
+                by              
+                <a class="username" href="">{{recipe.userName}}</a>
+              </span>
+            </span>
+            <hr />
+            <a routerLink="post.url" class="post-title">{{recipe.name}}</a>
+            <div>
+              <p class="post-text" [innerHtml]="recipe.description"></p>
+            </div><br>
+            <div>
+                <h3>Składniki:</h3>
+                <p class="post-text" [innerHtml]="recipe.ingredients"></p>
+            </div><br>
+            <div>
+                <h3>Sposób przygotowania:</h3>
+                <p class="post-text" [innerHtml]="recipe.directions"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <app-side-bar></app-side-bar>
+      </div>
+    </div>
+  </div>
