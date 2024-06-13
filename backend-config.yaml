@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: backend:1.0
+          image: markiewiczb/backend:1.0
           ports:
             - containerPort: 8080
           env:
