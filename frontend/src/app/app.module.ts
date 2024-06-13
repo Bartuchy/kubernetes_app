@@ -22,6 +22,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserProfileComponent } from './auth/user-profile/user-profile.component';
 import { UpdateRecipeComponent } from './recipe/update-recipe/update-recipe.component';
 import { QrAuthComponent } from "./auth/qr-auth/qr-auth.component";
+import { NgOptimizedImage } from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -38,18 +39,19 @@ import { QrAuthComponent } from "./auth/qr-auth/qr-auth.component";
     UpdateRecipeComponent,
     QrAuthComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    NgxWebstorageModule.forRoot(),
-    BrowserAnimationsModule,
-    ToastrModule.forRoot(),
-    EditorModule,
-    NgbModule,
-    FormsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        NgxWebstorageModule.forRoot(),
+        BrowserAnimationsModule,
+        ToastrModule.forRoot(),
+        EditorModule,
+        NgbModule,
+        FormsModule,
+        NgOptimizedImage
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

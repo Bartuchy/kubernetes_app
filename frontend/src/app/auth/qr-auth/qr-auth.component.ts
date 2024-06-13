@@ -30,6 +30,7 @@ export class QrAuthComponent implements OnInit {
 
         this.authService.getQrCodeLinkForUser(this.loginRequest.email)
             .subscribe(v => {
+              console.log(v)
                 this.qrCode = v;
             })
     }
