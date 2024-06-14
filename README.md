@@ -1,43 +1,50 @@
-build backend image:
-- cd backend
-- mvn clean install -DskipTests=true
-- docker build -t backend:1.0 .
+# Tematyka projektu: Przepisy kulinarne
+### funkcjonalności
+- tworzenie konta (wymagany istniejący email, na pocztę przychodzi mail z linkiem aktywacyjnym, jednak dla uproszczenia konto będzie od razu aktywne a istniejący mail jest wymagany aby przejść walidację)
+- logowanie
+- wyświetlenie wszystkich przepisów
+- wyświetlenie swoich przepisów
+- wyświetlenie szczegółów konkretnego przepisu
+- dodawanie nowych przepisów
+- edycja przepisów
+- usuwanie przepisów
 
-verify:
-- docker images
+## Setup
 
+```bash
+minikube start
+```
+setup bazy
+```bash
+kubectl apply -f postgres-config.yaml
+```
 
-apply image to minikube:
-- start minikube
-- minikube image load backend:1.0
+setup backendu
+```bash
+kubectl apply -f backend-config.yaml
+```
 
-verify:
-- minikube ssh
-- docker images
-- exit
-
-
-if everything is fine - deploy app
-in project root:
-- k apply -f postgres-config.yaml
-- k apply -f backend-config.yaml
-
-verify:
--k get pod
-
-endpoint call:
-- minikube service backend --url
-
-use produced address as endpoint host, for example:
-- wget http://127.0.0.1:52600/
+setup frontendu
+```bash
+kubectl apply -f frontend-config.yaml
+```
 
 
-to reach db through intellij
-run:
-- k get pod
-- k port-forward <postgres-pod-name> 5433:5432
+weryfikacja działania:
+```bash
+kubectl get pod
+kubectl get deploy
+kubectl get svc
+kubectl get netpol
+kubectl get pv,pvc
+```
 
-connection specification:
-- url: jdbc:postgresql://localhost:5433/postgres_db
-- user: postgres
-- password: 12345
+
+ze względu na wadę jaką jest system windows wymagane jest uruchomienie tunelowania aby dostać się na frontend 
+```bash
+minikube service frontend --url
+```
+
+### Dane domyślnego użytkownika
+- login: bartekmark00@gmail.com
+- hasło: test12345
